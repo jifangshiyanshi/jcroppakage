@@ -1,16 +1,11 @@
 <!DOCTYPE html> 
 <html> 
 <head> 
-{gres:js jquery-1.11.2.min.js} 
-<script type="javascript" src="jquery.min.js"></script>
-<script type="javascript" src="UploadFile.js"></script>
-{gres:js uploadFile/UploadFile.js} <!--就是前面做的那个无刷新上传封装--> 
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="UploadFile.js"></script>
 </head> 
 <body> 
 <script type="text/javascript"> 
-
-
-
 $(document).ready(function(){ 
 var ceshi = document.getElementById("ceshi"); 
 var upload = new Upload({ 
@@ -23,7 +18,6 @@ console.log(data);
 }); 
 upload.start(); 
 }); 
-
 </script> 
 <div id="ceshi"> 
 点这里 
@@ -31,21 +25,21 @@ upload.start();
 
 <div id="imgbox" style="width:1000px;height:500px;position:relative;border:1px solid black;"> 
 <div class="target-container"> 
-<img src="/res/upload/image/2015/10/10/1444458844-858319.jpg" id="target"/> 
+<img src="test.jpg" id="target"/> 
 </div> 
 
 </div> 
 
 <div class="preview-container" style="width:215px;height:126px;overflow:hidden;position:absolute;left:300px;top:300px;border:1px solid black;"> 
-<img src="/res/upload/image/2015/10/10/1444458844-858319.jpg" id="pre-img" /> 
+<img src="test.jpg" id="pre-img" /> 
 </div> 
 
 <div class="preview-container-2" style="width:215px;height:126px;overflow:hidden;position:absolute;left:600px;top:300px;border:1px solid black;"> 
-<img src="/res/upload/image/2015/10/10/1444458844-858319.jpg" id="pre-img-2" /> 
+<img src="test.jpg" id="pre-img-2" /> 
 </div> 
 
 <div class="preview-container-3" style="width:300px;height:300px;overflow:hidden;position:absolute;left:600px;top:600px;border:1px solid black;"> 
-<img src="/res/upload/image/2015/10/10/1444458844-858319.jpg" id="pre-img-3" /> 
+<img src="test.jpg" id="pre-img-3" /> 
 </div> 
 <button id="haha">测试</button> 
 
@@ -71,10 +65,9 @@ upload.send();
 350/230 
 
 
-{gres:js jcrop/js/jquery.Jcrop.min.js} 
-<link rel="stylesheet" href="/res/global/js/jcrop/css/jquery.Jcrop.min.css" /> 
+<script type="text/javascript" src="jquery.Jcrop.min.js"></script>
+<link rel="stylesheet" href="jquery.Jcrop.min.css" /> 
 <script type="text/javascript"> 
-
 /** 
 * 
 * 注意 包裹that.containerBoxSelect 的div要设置成相对定位 这个是视觉上的预览框 
@@ -112,7 +105,6 @@ console.log(data);}
 //带有预览图的jcrop 
 var preJcrop = function(options){ 
 var that = this; 
-
 //图片选择器 
 that.target = options.target?options.target:'#target'; //必须参数 //要做选框的目标图片 img的id 
 //画布 
@@ -120,18 +112,13 @@ that.boxWidth = options.boxWidth?options.boxWidth:700; //canvas画布的大小 �
 that.boxHeight = options.boxHeight?options.boxHeight:500; 
 //that.constBox = [300,100];//width height 画布最大尺寸 我去 居然忘记了 这个boxWidthboxHeight和constBox有影响吗 怎么影响 这玩意不是动态变化的吗 难道 之前用了这个值 初始化的时候用了 暂时不明白为何不能与boxWidth boxHeight 
 that.constBox = [that.boxWidth,that.boxHeight]; 
-
 //选框 
 that.constSelectBox = options.constSelectBox?options.constSelectBox:[215,126]//[215,126];//0 宽 1 高 选取框默认尺寸 选取框的尺寸是不变的 只不过根据图片的大小来计算选取框应该在什么位置 
 //that.aspectRatio = options.aspectRatio?options.aspectRatio:215/126; //比例 选框宽高比。说明：width/height //这个不用设置 
 that.aspectRatio = that.constSelectBox[0]/that.constSelectBox[1];//用这个替代 选框比例 
-
-
-
 //that.constBox = [215,126]; 
 //包裹被操作图片的div 
 that.containerBoxSelect = options.containerBoxSelect?options.containerBoxSelect:'.target-container';//选择器 包裹图片的div 用这个包裹那个图片 然后定位这div使它居中 
-
 //包裹预览图片的div 和预览图片 预览图片的最好是一个数组 这样可以填加更多的预览图 //这里都变成数组 
 /*that.preContainerSelect = options.preContainerSelect?options.preContainerSelect:'preview-container'; 
 that.preImgSelect = options.preImgSelect?options.preImgSelect:'.preview-container img'; 
@@ -139,8 +126,6 @@ that.preContainer = $(that.preContainerSelect);
 that.preImg = $(that.preImgSelect); //预览图片 
 that.xsize = that.preContainer.width(); //预览图片的容器大小 
 that.ysize = that.preContainer.height();*/ 
-
-
 that.preContainerSelect = options.preContainerSelect?options.preContainerSelect:['preview-container']; 
 that.preImgSelect = options.preImgSelect?options.preImgSelect:['.preview-container img']; 
 that.preContainer = [];//预览图片的包裹div 
@@ -157,15 +142,11 @@ for(var i = 0; i< that.preContainer.length; i++ ){
 that.xsize.push( that.preContainer[i].width()); 
 that.ysize.push( that.preContainer[i].height()); 
 } 
-
-
-
 //传入后台裁剪的大小 
 that.cutWidth = options.cutWidth?options.cutWidth:'215'; // '215'; 要裁剪成的大小 
 that.cutheight = options.cutHeight?options.cutHeight:'126'; // '126'; 
 that.ajaxCallback = (typeof options.ajaxCallback == 'function')?options.ajaxCallback:function(){}; 
 that.imgUrl = options.imgUrl?options.imgUrl:''; 
-
 //可以自动获取 
 //图片的大小 
 that.imgWidth = options.imgWidth?options.imgWidth:0; 
@@ -174,10 +155,8 @@ that.imgHeight = options.imgHeight?options.imgHeight:0;
 that.jcrop_api = null; 
 //图片在操作框中的缩放比例 
 that.rate = 0;//图片的缩放比率 
-
 that.sendMsg = {};//最终发送到后台的数据 
 that.postUrl = options.postUrl?options.postUrl:'/image_upload_newcrop'; that.started = false;//检测是否已经调用start函数 比如在调用send方法的时候 判断是否已经有数据了 如果都还没有调用start函数 调用send函数没有意义 
-
 //{param.height,param.width} 
 //计算画布的大小 画布有一个最大尺寸 为何要计算画布大小 因为控制图片的位置 是很难控制的 所以采用在一个div中定位这个画布的位置来 
 //完成 图片在显示框中的假象 其实是一个画布在一个框中 根据图片的大小来计算和定位 看起来就是图片居中适配了 
@@ -204,15 +183,12 @@ that.boxHeight = height * that.rate;
 } 
 } 
 } 
-
-
 //计算选框的位置 参数是全局变量 这个函数只能在计算了选框之后使用 选取框最大是规定的大 小于设置的就是图片最大的 
 that.calSelectBoxPos = function(){ 
 //计算选择框的适配 三种情况 1：图片有足够的空间容纳 选框 2：依照高或者宽 取大值 
 //找到中点 
 var selectBox = []; 
 var middlePoint = [ that.boxWidth /2 , that.boxHeight/2 ]; //图片的中点 
-
 if(that.boxWidth > that.constSelectBox[0] && that.boxHeight > that.constSelectBox[1] ){ 
 selectBox = that.constSelectBox; 
 }else{ 
@@ -228,8 +204,6 @@ selectBox[0] = that.constSelectBox[0]/that.constSelectBox[1]*selectBox[1];
 var halfSelect = [selectBox[0]/2,selectBox[1]/2]; //选取框的一半 
 return [middlePoint[0]-halfSelect[0],middlePoint[1]-halfSelect[1],middlePoint[0]+halfSelect[0],middlePoint[1]+halfSelect[1]];//选取框的两个点 左上角 右下角 
 } 
-
-
 //设置画布大小 位置 选框位置 
 that.setCanvasBox = function(animateToBox){ 
 that.jcrop_api.setOptions({boxWidth:that.boxWidth,boxHeight:that.boxHeight}); 
@@ -249,9 +223,7 @@ $(that.containerBoxSelect).css({
 "margin-left":-that.boxWidth/2+'px', 
 "margin-top":-that.boxHeight/2+'px' 
 }); 
-
 } 
-
 that.start = function(){ 
 //var data; 
 //调用裁剪对象 
@@ -274,12 +246,10 @@ that.setCanvasBox(animateToBox);
 // Move the preview into the jcrop container for css positioning 
 //$preview.appendTo(jcrop_api.ui.holder); 
 }); 
-
 //更新预览图 
 function updatePreview(c){ 
 that.jcrop_api = this; 
 var bounds = that.jcrop_api.getBounds(); 
-
 that.sendMsg.x = c.x; 
 that.sendMsg.y = c.y; 
 that.sendMsg.x2 = c.x2; 
@@ -288,13 +258,10 @@ that.sendMsg.w = bounds[0];
 that.sendMsg.h = bounds[1]; 
 that.sendMsg._w = that.cutWidth;// '215'; 
 that.sendMsg._h = that.cutheight;//'126'; 
-
-
 if (parseInt(c.w) > 0) { 
 //计算横向放大 和纵向放大 
 var rx = bounds[0] / c.w; //横向 缩小的倍数 
 var ry = bounds[1] / c.h; //纵向 缩小的倍数 
-
 //图片相对于选取框 放大多少倍 那么预览图就要相当于 预览框放大多少倍 
 //坐标的放大倍数呢 就是 选取框到预览框放大的倍数 
 for(var i = 0; i< that.preImg.length; i++ ){ 
@@ -306,12 +273,9 @@ marginLeft: '-' + Math.round((that.xsize[i]/ c.w) * c.x) + 'px',
 marginTop: '-' + Math.round((that.ysize[i]/ c.h) * c.y) + 'px' 
 }); 
 } 
-
 } 
-
 }; 
 } 
-
 //发送信息到后台的函数 
 that.send = function(){ 
 if(!that.started) return; 
@@ -337,7 +301,6 @@ $.post(that.postUrl,data,function(data,status){ that.ajaxCallback(data);
 //cancel(); 
 }); 
 } 
-
 } 
 </script> 
 
