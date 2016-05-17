@@ -284,5 +284,6 @@ var preJcrop = function(options){
             //cancel();
         });
     }
+	//补充注释 这里发送的数据是 按照显示给用户的大小来计算的  而不是相对于原图  
 
 }
